@@ -77,7 +77,7 @@ public class RankMain : MonoBehaviour
 
         webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
         webRequest.downloadHandler = new DownloadHandlerBuffer();
-        webRequest.SetRequestHeader("Conrect-Type", "application/json");
+        webRequest.SetRequestHeader("Content-Type", "application/json");
 
         yield return webRequest.SendWebRequest();
 

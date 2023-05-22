@@ -9,12 +9,11 @@ class Pool
     IObjectPool<GameObject> _pool;
 
     Transform _root;
-
     Transform Root
     {
         get
         {
-            if (Root == null)
+            if (_root == null)
             {
                 GameObject temp = new GameObject() { name = $"@{_prefab.name}Pool" };
                 _root = temp.transform;
@@ -63,7 +62,9 @@ class Pool
     {
         GameObject.Destroy(go);
     }
+
 }
+
 
 public class PoolManager
 {
@@ -76,7 +77,6 @@ public class PoolManager
 
         return _pools[prefab.name].Pop();
     }
-
     public bool Push(GameObject go)
     {
         if (_pools.ContainsKey(go.name) == false)
@@ -85,12 +85,10 @@ public class PoolManager
         _pools[go.name].Push(go);
         return true;
     }
-
     public void Clear()
     {
         _pools.Clear();
     }
-
     void CreatePool(GameObject original)
     {
         Pool pool = new Pool(original);
